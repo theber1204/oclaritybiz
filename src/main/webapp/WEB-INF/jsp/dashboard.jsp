@@ -28,22 +28,22 @@
                 <p><strong>Estado:</strong> Activo</p>
             </div>
         </div>
-        <c:if test="${not empty defaultModules}">
-            <div style="margin-bottom: 20px;">
-                <h3 style="color: #333;">Módulos Disponibles</h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                    <c:forEach var="value" items="${defaultModules}">
-                        <p>Nombre: ${value.name}</p>
-                        <p>Status: ${value.status}</p>
+        <div class="modules-section">
+            <h3>Módulos Disponibles</h3>
+            <c:if test="${not empty defaultModules}">
+                <div class="modules-grid">
+                    <c:forEach var="module" items="${defaultModules}">
+                        <div class="module-card">
+                            <h4>${module.name}</h4>
+                            <p>Status: ${module.status}</p>
+                        </div>
                     </c:forEach>
                 </div>
-            </div>
-        </c:if>
-        <c:if test="${empty defaultModules}">
-            <div style="text-align: center; margin-top: 20px;">
-                <p style="color: #999;">No hay módulos disponibles actualmente.</p>
-            </div>
-        </c:if>
+            </c:if>
+            <c:if test="${empty defaultModules}">
+                <p class="no-modules">No hay módulos disponibles actualmente.</p>
+            </c:if>
+        </div>
     </div>
 </div>
 <jsp:include page="fragments/footer.jsp" />

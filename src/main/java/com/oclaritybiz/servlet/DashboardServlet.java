@@ -1,12 +1,13 @@
 package com.oclaritybiz.servlet;
 
+import com.oclaritybiz.service.ModuleService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import com.oclaritybiz.model.Usuario;
 import com.oclaritybiz.model.Module;
 import java.io.IOException;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "DashboardServlet", urlPatterns = {"/dashboard"})
@@ -23,13 +24,9 @@ public class DashboardServlet extends HttpServlet {
             return;
         }
 
-        // Simulación de módulos (puedes reemplazar por tu lógica real)
-        List<Module> defaultModules = new ArrayList<>();
-        defaultModules.add(new Module("1", "Ventas", "fa-shopping-cart", "/ventas", "Activo"));
-        defaultModules.add(new Module("2", "Inventario", "fa-boxes", "/inventario", "Inactivo"));
-        defaultModules.add(new Module("3", "Reportes", "fa-chart-bar", "/reportes", "Activo"));
-
-        session.setAttribute("defaultModules", defaultModules);
+        // Obtener módulos desde el servicio
+        ModuleService moduleService = new ModuleService();
+        List<Module> defaultModules = moduleService.obtenerModulosPorUsuario(user.getId());
 
         Object companyAttr = session.getAttribute("company");
         request.setAttribute("userName", user.getName());

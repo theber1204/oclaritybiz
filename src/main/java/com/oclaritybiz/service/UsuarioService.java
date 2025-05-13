@@ -5,6 +5,7 @@ import com.oclaritybiz.model.Usuario;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
