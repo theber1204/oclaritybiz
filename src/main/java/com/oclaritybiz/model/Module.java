@@ -7,6 +7,17 @@ public class Module {
     private String link;
     private String status;
 
+    // Constructor vacío
+    public Module() {
+    }
+    // Constructor completo
+    public Module(String id, String name, String icon, String link, String status) {
+        this.id = id;
+        this.name = name;
+        this.icon = icon;
+        this.link = link;
+        this.status = status;
+    }
     // Getters y Setters
     public String getId() {
         return id;
