@@ -10,4 +10,4 @@
     </main>
 </div>
 
-<%@ include file="fragments/footer.jsp" %>
+<%--<%@ include file="fragments/footer.jsp" %>--%>

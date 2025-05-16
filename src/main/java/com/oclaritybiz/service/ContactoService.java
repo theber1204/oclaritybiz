@@ -15,7 +15,7 @@ public class ContactoService {
         this.contactoDAO = new ContactoDAO(connection);
     }
 
-    public List<Contacto> obtenerContactosPorUsuario(int userId) throws SQLException {
-        return contactoDAO.obtenerContactosPorUsuario(userId);
+    public List<Contacto> obtenerContactosPorCompania(int companyId) throws SQLException {
+        return contactoDAO.obtenerContactosPorCompania(companyId);
     }
 }

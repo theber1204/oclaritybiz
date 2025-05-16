@@ -7,20 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactoDAO {
-    private final String dbUrl = "jdbc:mysql://localhost:3306/oclaritybiz_bd";
-    private final String dbUser = "root";
-    private final String dbPass = "";
-
     private final Connection connection;
 
     public ContactoDAO(Connection connection) {
         this.connection = connection;
     }
 
-    public List<Contacto> obtenerContactosPorUsuario(int userId) throws SQLException {
-        String sql = "SELECT * FROM contacts WHERE user_id = ?";
+    public List<Contacto> obtenerContactosPorCompania(int companyId) throws SQLException {
+        String sql = "SELECT * FROM contacts WHERE company_id = ?";
+        System.out.println("Conexión a BD: " + connection.getMetaData().getURL());
+        System.out.println("Ejecutando SQL: " + sql + " con companyId=" + companyId);
+
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, userId);
+            statement.setInt(1, companyId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 List<Contacto> contactos = new ArrayList<>();
                 while (resultSet.next()) {
@@ -34,8 +33,8 @@ public class ContactoDAO {
                     contacto.setCompanyId(resultSet.getInt("company_id"));
                     contactos.add(contacto);
                 }
+                System.out.println("Contactos encontrados: " + contactos.size());
                 return contactos;
-
             }
         }
     }
