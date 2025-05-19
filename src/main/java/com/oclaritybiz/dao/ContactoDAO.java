@@ -30,6 +30,7 @@ public class ContactoDAO {
                     contacto.setSurnames(resultSet.getString("surnames"));
                     contacto.setPhone(resultSet.getString("phone"));
                     contacto.setEmail(resultSet.getString("email"));
+                    contacto.setLinkedin(resultSet.getString("linkedin"));
                     contacto.setCompanyId(resultSet.getInt("company_id"));
                     contactos.add(contacto);
                 }

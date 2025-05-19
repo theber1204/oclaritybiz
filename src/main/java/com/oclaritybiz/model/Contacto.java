@@ -7,19 +7,21 @@ public class Contacto {
     private String surnames;
     private String phone;
     private String email;
+    private String linkedin;
     private int companyId;
 
     // Getters y setters
     public Contacto() {
     }
 
-    public Contacto(int id, int userId, String name, String surnames, String phone, String email, int companyId) {
+    public Contacto(int id, int userId, String name, String surnames, String phone, String email,String linkedin, int companyId) {
         this.id = id;
         this.userId = userId;
         this.name = name;
         this.surnames = surnames;
         this.phone = phone;
         this.email = email;
+        this.linkedin = linkedin;
         this.companyId = companyId;
     }
 
@@ -70,6 +72,10 @@ public class Contacto {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getLinkedin() {return linkedin;}
+
+    public void setLinkedin(String linkedin) {this.linkedin = linkedin;}
 
     public int getCompanyId() {
         return companyId;
