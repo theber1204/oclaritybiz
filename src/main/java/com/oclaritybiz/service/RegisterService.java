@@ -1,3 +1,4 @@
+// src/main/java/com/oclaritybiz/service/RegisterService.java
 package com.oclaritybiz.service;
 
 import com.oclaritybiz.dao.UsuarioDAO;
@@ -10,17 +11,17 @@ public class RegisterService {
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
     private static final Logger logger = Logger.getLogger(RegisterService.class.getName());
 
-    public boolean registerUser(Usuario usuario) {
+    // Cambia el tipo de retorno a Integer
+    public Integer registerUser(Usuario usuario) {
         try {
-            // Hashear la contraseña del usuario antes de almacenarla
             String hashedPassword = BCrypt.hashpw(usuario.getPassword(), BCrypt.gensalt());
             usuario.setPassword(hashedPassword);
 
-            // Llamar al DAO para guardar el usuario
+            // Retorna el id generado o null
             return usuarioDAO.registrarUsuario(usuario);
         } catch (Exception e) {
             logger.severe("Error al registrar usuario: " + e.getMessage());
-            return false;
+            return null;
         }
     }
 }

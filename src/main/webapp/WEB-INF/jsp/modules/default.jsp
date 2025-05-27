@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<title>Inicio</title>
 <div class="page-container py-4">
     <div class="container">
         <!-- Bienvenida -->
         <div class="welcome-section text-center mb-4">
-            <h1 class="welcome-title mb-2">Bienvenido, <span class="highlight">${userName}</span></h1>
+            <h1 class="welcome-title mb-2">Bienvenido, <span class="highlight">${user.name}</span></h1>
             <p class="welcome-text">Estamos encantados de que estés aquí en <strong>${company.name}</strong>.</p>
         </div>
 
@@ -21,8 +22,6 @@
             <div class="col-md-6">
                 <div class="info-card info-system h-100 shadow-sm p-4">
                     <h3 class="mb-3"><i class="fas fa-info-circle me-2 text-primary"></i>Información del Sistema</h3>
-                    <p><strong>Usuarios Conectados:</strong> <span class="badge bg-primary-soft">${connectedUsers}</span></p>
-                    <p><strong>Última Actualización:</strong> ${lastUpdate}</p>
                     <p><strong>Estado:</strong> <span class="badge bg-success">${systemActive ? 'Activo' : 'Inactivo'}</span></p>
                 </div>
             </div>

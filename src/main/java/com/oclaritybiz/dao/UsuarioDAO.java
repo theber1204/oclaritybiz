@@ -57,7 +57,7 @@ public class UsuarioDAO {
         return usuario;
     }
 
-    public boolean registrarUsuario(Usuario usuario) throws SQLException {
+    public Integer registrarUsuario(Usuario usuario) throws SQLException {
         String sql = "INSERT INTO users (name, password, email, company_id) VALUES (?, ?, ?, ?)";
 
         try {
@@ -68,7 +68,7 @@ public class UsuarioDAO {
         }
 
         try (Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPass);
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, usuario.getName());
             ps.setString(2, usuario.getPassword());
@@ -76,7 +76,17 @@ public class UsuarioDAO {
             ps.setInt(4, usuario.getCompany().getId());
 
             int affectedRows = ps.executeUpdate();
-            return affectedRows > 0;
+            if (affectedRows == 0) {
+                return null;
+            }
+
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                } else {
+                    return null;
+                }
+            }
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Error al registrar usuario en la base de datos", e);

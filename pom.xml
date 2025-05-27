@@ -5,8 +5,8 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ejemplo</groupId>
-    <artifactId>mi-proyecto</artifactId>
+    <groupId>com.oclaritybiz</groupId>
+    <artifactId>oclaritybizV1</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -83,7 +83,7 @@
     </dependencies>
 
     <build>
-        <finalName>mi-proyecto</finalName>
+        <finalName>oclaritybizV1</finalName>
         <plugins>
             <!-- Plugin de empaquetado en WAR, si necesitas configuración específica -->
             <plugin>

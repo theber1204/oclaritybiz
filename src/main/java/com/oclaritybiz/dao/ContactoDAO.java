@@ -39,4 +39,29 @@ public class ContactoDAO {
             }
         }
     }
+
+    public boolean crearContacto(Contacto contacto, int companyId) throws SQLException {
+        String sql = "INSERT INTO contacts (name, email, phone, company_id, user_id) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, contacto.getName());
+            stmt.setString(2, contacto.getEmail());
+            stmt.setString(3, contacto.getPhone());
+            stmt.setInt(4, companyId);
+            stmt.setInt(5, contacto.getUserId());
+            return stmt.executeUpdate() > 0;
+        }
+    }
+
+    public boolean actualizarContacto(Contacto contacto) throws SQLException {
+        String sql = "UPDATE contacts SET name = ?, surnames = ?, email = ?, phone = ?, linkedin = ? WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, contacto.getName());
+            stmt.setString(2, contacto.getSurnames());
+            stmt.setString(3, contacto.getEmail());
+            stmt.setString(4, contacto.getPhone());
+            stmt.setString(5, contacto.getLinkedin());
+            stmt.setInt(6, contacto.getId());
+            return stmt.executeUpdate() > 0;
+        }
+    }
 }

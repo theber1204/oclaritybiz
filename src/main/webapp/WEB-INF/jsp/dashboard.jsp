@@ -3,9 +3,9 @@
 
 <%@ include file="fragments/header.jsp" %>
 
-<div style="display: flex; min-height: 100vh;">
+<div class="d-flex flex-column flex-lg-row min-vh-100">
     <%@ include file="fragments/sidebar.jsp" %>
-    <main style="flex-grow: 1; padding: 20px; background-color: #f9f9f9;">
+    <main class="flex-grow-1 p-3 bg-light">
         <jsp:include page="${modulePage}" />
     </main>
 </div>
