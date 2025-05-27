@@ -1,16 +1,16 @@
 package com.oclaritybiz.servlet;
 
-import com.oclaritybiz.model.Contacto;
+import com.oclaritybiz.command.Command;
+import com.oclaritybiz.command.CommandFactory;
 import com.oclaritybiz.model.Module;
-import com.oclaritybiz.service.ContactoService;
-import com.oclaritybiz.utils.DatabaseUtils;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "DashboardServlet", urlPatterns = {"/dashboard"})
@@ -19,57 +19,45 @@ public class DashboardServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Verificar sesión y companyId
-        HttpSession session = request.getSession(false); // No crear nueva sesión
+        if (!verificarSesion(request, response)) return;
+
+        // Configurar los módulos predeterminados
+        List<Module> defaultModules = List.of(
+                new Module("home", "Inicio", "bi bi-house-door-fill", "/dashboard?module=home", "Activo"),
+                new Module("contacts", "Contactos", "bi bi-people-fill", "/dashboard?module=contacts", "Activo"),
+                new Module("manuales", "Manuales", "bi bi-journal-bookmark-fill", "/dashboard?module=manuales", "Activo"),
+                new Module("reports", "Reportes", "bi bi-bar-chart-fill", "/dashboard?module=reports", "Activo")
+        );
+        request.setAttribute("defaultModules", defaultModules);
+
+        // Configurar el módulo activo
+        String currentPage = request.getParameter("module");
+        request.setAttribute("currentPage", currentPage);
+
+        // Si no se especifica un módulo, se usa el módulo predeterminado
+        Command command = CommandFactory.getCommand(request, "GET");
+        command.execute(request, response);
+
+        // Redirigir a la página del dashboard
+        request.getRequestDispatcher("/WEB-INF/jsp/dashboard.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        if (!verificarSesion(request, response)) return;
+
+        Command command = CommandFactory.getCommand(request, "POST");
+        command.execute(request, response);
+    }
+
+    private boolean verificarSesion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession(false);
         Integer companyId = (session != null) ? (Integer) session.getAttribute("companyId") : null;
         if (companyId == null) {
             response.sendRedirect(request.getContextPath() + "/login");
-            return;
+            return false;
         }
-
-        // Obtener el parámetro "module" y asignar un valor predeterminado si es null
-        String module = request.getParameter("module");
-        if (module == null || module.isEmpty()) {
-            module = "default";
-        }
-
-        // Determinar la página JSP del módulo
-        String modulePage;
-        switch (module) {
-            case "home":
-            default:
-                modulePage = "/WEB-INF/jsp/modules/default.jsp";
-                break;
-            case "contacts":
-                modulePage = "/WEB-INF/jsp/modules/contacts.jsp";
-                // Cargar contactos solo si el módulo es contacts
-                try (Connection connection = DatabaseUtils.getConnection()) {
-                    ContactoService contactoService = new ContactoService(connection);
-                    List<Contacto> contactos = contactoService.obtenerContactosPorCompania(companyId);
-                    request.setAttribute("contactos", contactos);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    request.setAttribute("contactos", List.of());
-                }
-                break;
-            case "reports":
-                modulePage = "/WEB-INF/jsp/modules/reports.jsp";
-                break;
-        }
-
-        // Crear una lista de módulos predeterminados
-        List<Module> defaultModules = List.of(
-                new Module("home", "Inicio", "icon-home", "/dashboard?module=home", "Activo"),
-                new Module("contacts", "Contactos", "icon-contacts", "/dashboard?module=contacts", "Activo"),
-                new Module("reports", "Reportes", "icon-reports", "/dashboard?module=reports", "Activo")
-        );
-
-        // Establecer atributos en la solicitud
-        request.setAttribute("modulePage", modulePage);
-        request.setAttribute("defaultModules", defaultModules);
-        request.setAttribute("currentPage", module);
-
-        // Redirigir al dashboard
-        request.getRequestDispatcher("/WEB-INF/jsp/dashboard.jsp").forward(request, response);
+        return true;
     }
 }

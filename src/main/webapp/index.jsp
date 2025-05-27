@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/img/hlogo1.png" type="image/x-icon" >
 
     <!-- Tu CSS personalizado -->
     <link rel="stylesheet" href="assets/css/styles.css?v=1.0">
@@ -75,8 +75,8 @@
                     </div>
                 </div>
 
-                <div class="col-lg-5 d-none d-lg-block">
-                    <img src="assets/img/hero-illustration.svg" alt="Plataforma de aprendizaje" class="img-fluid" loading="lazy">
+                <div class="col-lg-5 d-none d-lg-block border border-black rounded-4 p-3 bg-light shadow-sm">
+                    <img src="assets/img/ocla.png" alt="Plataforma de aprendizaje" class="img-fluid rounded-3" loading="lazy">
                 </div>
             </div>
         </div>
@@ -163,8 +163,9 @@
 
             <div class="row g-4 justify-content-center">
                 <div class="col-6 col-md-4 col-lg-2">
-                    <div class="client-logo">
-                        <img src="assets/img/logo_empresa1.png" alt="Empresa 1" class="img-fluid" loading="lazy">
+                    <div class="client-logo d-flex justify-content-center align-items-center">
+                        <img src="assets/img/hlogo1.png" height="125" width="125" alt="Empresa 1" class="img-fluid me-3" loading="lazy">
+                        <img src="assets/img/oclaritybizvbw.png" height="125" width="125"  alt="Empresa 1" class="img-fluid" loading="lazy">
                     </div>
                 </div>
                 <!-- Repetir para otros clientes -->
@@ -219,10 +220,10 @@
                 </p>
 
                 <div class="d-flex flex-wrap justify-content-center gap-3">
-                    <a href="mailto:info@oclaritybiz.com" class="btn btn-primary btn-lg btn-cta-primary">
+                    <a href="mailto:eberhenri@gmail.com" class="btn btn-primary btn-lg btn-cta-primary">
                         <i class="fas fa-envelope me-2"></i> Solicitar demo
                     </a>
-                    <a href="tel:+123456789" class="btn btn-outline-light btn-lg btn-cta-secondary">
+                    <a href="tel:+51946234031" class="btn btn-outline-light btn-lg btn-cta-secondary">
                         <i class="fas fa-phone me-2"></i> Contactar
                     </a>
                 </div>
@@ -237,10 +238,10 @@
         <div class="row">
             <div class="col-lg-4 mb-4 mb-lg-0">
                 <div class="footer-brand d-flex align-items-center mb-3">
-                    <img src="assets/img/hlogol1.jpg" alt="OclarityBiz" height="40" width="40" loading="lazy" class="rounded me-2">
+                    <img src="assets/img/oclaritybizwww.png" alt="OclarityBiz" height="40" width="40" loading="lazy" class="rounded me-2">
                     <span class="fw-bold fs-5">OclarityBiz</span>
                 </div>
-                <p class="text-muted">Plataforma de aprendizaje corporativo diseñada para transformar el talento en tu organización.</p>
+                <p class="">Plataforma de aprendizaje corporativo diseñada para transformar el talento en tu organización.</p>
             </div>
 
             <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
@@ -267,15 +268,15 @@
                 <ul class="footer-contact list-unstyled">
                     <li class="mb-2">
                         <i class="fas fa-envelope me-2 text-primary"></i>
-                        <a href="mailto:info@oclaritybiz.com" class="footer-link">info@oclaritybiz.com</a>
+                        <a href="mailto:eberhenri@gmail.com" class="footer-link">eberhenri@gmail.com</a>
                     </li>
                     <li class="mb-2">
                         <i class="fas fa-phone me-2 text-primary"></i>
-                        <a href="tel:+123456789" class="footer-link">+1 (234) 567-89</a>
+                        <a href="tel:+123456789" class="footer-link">+51 946 234 031</a>
                     </li>
                     <li class="mb-2">
                         <i class="fas fa-map-marker-alt me-2 text-primary"></i>
-                        <span>Ciudad, País</span>
+                        <span>Arequipa, Perú</span>
                     </li>
                 </ul>
 
@@ -291,7 +292,7 @@
         <hr class="my-4">
 
         <div class="footer-bottom text-center">
-            <p class="mb-0 text-muted">&copy; 2024 OclarityBiz. Todos los derechos reservados.</p>
+            <p class="mb-0 text-shadow">&copy; 2024 OclarityBiz. Todos los derechos reservados.</p>
         </div>
     </div>
 </footer>

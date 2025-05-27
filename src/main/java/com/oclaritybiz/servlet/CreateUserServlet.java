@@ -1,13 +1,18 @@
 package com.oclaritybiz.servlet;
 
 import com.oclaritybiz.model.Company;
+import com.oclaritybiz.model.Contacto;
 import com.oclaritybiz.model.Usuario;
+import com.oclaritybiz.service.ContactoService;
 import com.oclaritybiz.service.RegisterService;
+import com.oclaritybiz.utils.DatabaseUtils;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebServlet(name = "CreateUserServlet", urlPatterns = {"/register"})
 public class CreateUserServlet extends HttpServlet {
@@ -22,10 +27,11 @@ public class CreateUserServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password"); // Contraseña en texto plano
         String email = request.getParameter("email"); // <-- Agregado
-        String companyParam = request.getParameter("company"); // ID de la compañía
+        String companyParam = request.getParameter("company"); // id de la compañía
 
         // 2. Validar los parámetros del formulario
-        if (username == null || username.trim().isEmpty() ||
+        if (
+                username == null || username.trim().isEmpty() ||
                 password == null || password.trim().isEmpty() ||
                 email == null || email.trim().isEmpty() || // <-- Validar email
                 companyParam == null || companyParam.trim().isEmpty()) {
@@ -41,9 +47,10 @@ public class CreateUserServlet extends HttpServlet {
         usuario.setPassword(password); // Se hash en el servicio más tarde
         usuario.setEmail(email); // <-- Asignar email
 
+        int companyId = Integer.parseInt(companyParam);
         try {
             // Convertir el ID de la compañía en un entero y asociarlo al Usuario
-            int companyId = Integer.parseInt(companyParam);
+
 
             Company company = new Company();
             company.setId(companyId);
@@ -57,20 +64,31 @@ public class CreateUserServlet extends HttpServlet {
 
         // 4. Intentar registrar el usuario utilizando el servicio
         try {
-            boolean creado = registerService.registerUser(usuario);
+            Integer userId = registerService.registerUser(usuario);
 
-            if (creado) {
-                // Usuario creado exitosamente
+            if (userId != null) {
+                // Crear contacto automáticamente
+                Contacto nuevoContacto = new Contacto();
+                nuevoContacto.setName(username);
+                nuevoContacto.setEmail(email);
+                nuevoContacto.setUserId(userId);
+
+                try (Connection connection = DatabaseUtils.getConnection()) {
+                    ContactoService contactoService = new ContactoService(connection);
+                    contactoService.crearContacto(nuevoContacto, companyId);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    request.setAttribute("warningMessage", "Usuario creado, pero no se pudo crear el contacto.");
+                }
+
                 request.setAttribute("successMessage", "Usuario creado exitosamente.");
                 request.getRequestDispatcher("/WEB-INF/jsp/createUser.jsp").forward(request, response);
             } else {
-                // Error al crear el usuario
                 request.setAttribute("errorMessage", "No se pudo crear el usuario.");
                 request.getRequestDispatcher("/WEB-INF/jsp/createUser.jsp").forward(request, response);
             }
 
         } catch (Exception e) {
-            // Manejar errores inesperados
             e.printStackTrace();
             request.setAttribute("errorMessage", "Error interno: " + e.getMessage());
             request.getRequestDispatcher("/WEB-INF/jsp/createUser.jsp").forward(request, response);
