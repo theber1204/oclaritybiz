@@ -60,7 +60,7 @@ public class ManualService {
     }
 
     public boolean crearManualConPaginas(Manual manual, List<ManualPage> pages) throws SQLException {
-        String insertManualSQL = "INSERT INTO manual (title, description, status) VALUES (?, ?, 'ACTIVO')";
+        String insertManualSQL = "INSERT INTO manuals (title, description, status) VALUES (?, ?, 'ACTIVO')";
         String insertPageSQL = "INSERT INTO manual_page (manual_id, image_url, observations, `order`) VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement manualStmt = connection.prepareStatement(insertManualSQL, Statement.RETURN_GENERATED_KEYS)) {
