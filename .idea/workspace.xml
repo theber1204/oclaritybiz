@@ -9,7 +9,16 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="72cfa6e0-d4e4-403c-ba46-160d705ffedb" name="Changes" comment="Implementar módulo de gestión de manuales; agregar clases y comandos para crear, listar y editar manuales y páginas; actualizar interfaz de usuario en JSPs" />
+    <list default="true" id="72cfa6e0-d4e4-403c-ba46-160d705ffedb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oclaritybiz/dao/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oclaritybiz/dao/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oclaritybiz/dao/ManualDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oclaritybiz/dao/ManualDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oclaritybiz/dao/ModuleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oclaritybiz/dao/ModuleDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oclaritybiz/dao/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oclaritybiz/dao/UsuarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oclaritybiz/service/ManualService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oclaritybiz/service/ManualService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oclaritybiz/utils/DatabaseUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oclaritybiz/utils/DatabaseUtils.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +34,7 @@
         <option value="package-info" />
         <option value="Class" />
         <option value="Jsp File" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -102,9 +112,10 @@
   <component name="JspContextManager">
     <jsp-to-context jsp-file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/includes/navbar.jsp" context-file="file://$PROJECT_DIR$/src/main/webapp/index.jsp" />
   </component>
-  <component name="LLMProjectSettings">
-    <option name="turned_on" value="false" />
-  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -146,7 +157,7 @@
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.build.tools.auto.reload": "ALL",
-    "settings.editor.selected.configurable": "configurable.group.editor",
+    "settings.editor.selected.configurable": "Docker",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -156,11 +167,11 @@
       <recent name="C:\Users\Eber Henri\IdeaProjects\oclaritybizV1\src\main\webapp\WEB-INF\lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Eber Henri\IdeaProjects\oclaritybizV1" />
       <recent name="C:\Users\Eber Henri\IdeaProjects\oclaritybizV1\src\main\webapp\assets\img" />
       <recent name="C:\Users\Eber Henri\IdeaProjects\oclaritybizV1\src\main\webapp\WEB-INF\jsp\modules" />
       <recent name="C:\Users\Eber Henri\IdeaProjects\oclaritybizV1\src\main\webapp\WEB-INF\lib" />
       <recent name="C:\Users\Eber Henri\IdeaProjects\oclaritybizV1\src\main\webapp" />
-      <recent name="C:\Users\Eber Henri\IdeaProjects\oclaritybizV1\src\main\webapp\WEB-INF" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat - OclarityBizV1">
@@ -178,6 +189,7 @@
       </method>
     </configuration>
     <configuration name="Tomcat - OclarityBizV1" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.6" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="21">
+      <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
@@ -477,6 +489,14 @@
       <workItem from="1748194737863" duration="2940000" />
       <workItem from="1748200511908" duration="11750000" />
       <workItem from="1748271212514" duration="27397000" />
+      <workItem from="1748664300562" duration="2612000" />
+      <workItem from="1748669148276" duration="289000" />
+      <workItem from="1748669700649" duration="6649000" />
+      <workItem from="1748714010978" duration="3000" />
+      <workItem from="1748714273221" duration="1138000" />
+      <workItem from="1748836196464" duration="1240000" />
+      <workItem from="1748837536656" duration="212000" />
+      <workItem from="1748837783206" duration="181000" />
     </task>
     <task id="LOCAL-00001" summary="Refactorizar el panel de control y el manejo de módulos; implementar ModuleDAO y ModuleService para módulos dinámicos">
       <option name="closed" value="true" />

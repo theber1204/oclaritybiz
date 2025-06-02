@@ -10,8 +10,8 @@ import java.util.logging.Logger;
 public class UsuarioDAO {
 
     private final String dbUrl = "jdbc:mysql://localhost:3306/oclaritybiz_bd";
-    private final String dbUser = "root";
-    private final String dbPass = "";
+    private final String dbUser = "theber";
+    private final String dbPass = "theber_password";
 
     private static final Logger LOGGER = Logger.getLogger(UsuarioDAO.class.getName());
 
